@@ -1,0 +1,99 @@
+# depslib dependency file v1.0
+1649417299 source:c:\users\maciu\onedrive\pulpit\kody\personal_budget\budgetdata.cpp
+	"BudgetData.h"
+
+1649417299 c:\users\maciu\onedrive\pulpit\kody\personal_budget\budgetdata.h
+	<iostream>
+	"BudgetData.h"
+
+1649417299 source:c:\users\maciu\onedrive\pulpit\kody\personal_budget\budgetdatamanager.cpp
+	"BudgetDataManager.h"
+
+1649418544 c:\users\maciu\onedrive\pulpit\kody\personal_budget\budgetdatamanager.h
+	<iostream>
+	"BudgetData.h"
+	"FileWithIncomes.h"
+	"FileWithExpenses.h"
+	<vector>
+
+1649418450 c:\users\maciu\onedrive\pulpit\kody\personal_budget\filewithincomes.h
+	<iostream>
+	<vector>
+	"BudgetData.h"
+
+1649418435 c:\users\maciu\onedrive\pulpit\kody\personal_budget\filewithexpenses.h
+	<iostream>
+	<vector>
+	"BudgetData.h"
+
+1649860486 source:c:\users\maciu\onedrive\pulpit\kody\personal_budget\filewithusers.cpp
+	"FileWithUsers.h"
+
+1649859602 c:\users\maciu\onedrive\pulpit\kody\personal_budget\filewithusers.h
+	<iostream>
+	<vector>
+	"User.h"
+	<windows.h>
+	<winbase.h>
+	"Markup.h"
+	"HelpfulMethods.h"
+	<fstream>
+
+1649428936 c:\users\maciu\onedrive\pulpit\kody\personal_budget\user.h
+	<iostream>
+	"User.h"
+
+1649863672 source:c:\users\maciu\onedrive\pulpit\kody\personal_budget\main.cpp
+	<iostream>
+	"personalBudget.h"
+
+1649863672 c:\users\maciu\onedrive\pulpit\kody\personal_budget\personalbudget.h
+	<iostream>
+	"personalBudget.h"
+	"HelpfulMethods.h"
+	"UserManager.h"
+
+1649530267 source:c:\users\maciu\onedrive\pulpit\kody\personal_budget\user.cpp
+	"User.h"
+
+1649417299 source:c:\users\maciu\onedrive\pulpit\kody\personal_budget\filewithexpenses.cpp
+	"FileWithExpenses.h"
+
+1649510879 source:c:\users\maciu\onedrive\pulpit\kody\personal_budget\filewithincomes.cpp
+	"FileWithIncomes.h"
+
+1649863406 c:\users\maciu\onedrive\pulpit\kody\personal_budget\usermanager.h
+	<iostream>
+	"BudgetDataManager.h"
+	"FileWithUsers.h"
+	"HelpfulMethods.h"
+	<vector>
+
+1649861100 source:c:\users\maciu\onedrive\pulpit\kody\personal_budget\usermanager.cpp
+	"UserManager.h"
+
+1649421315 source:c:\users\maciu\onedrive\pulpit\kody\personal_budget\helpfulmethods.cpp
+	"HelpfulMethods.h"
+
+1649421315 c:\users\maciu\onedrive\pulpit\kody\personal_budget\helpfulmethods.h
+	<iostream>
+	<sstream>
+	<algorithm>
+
+1649863672 source:c:\users\maciu\onedrive\pulpit\kody\personal_budget\personalbudget.cpp
+	"personalBudget.h"
+
+1649530267 c:\users\maciu\onedrive\pulpit\kody\personal_budget\markup.h
+	<stdlib.h>
+	<string.h>
+	<string>
+	<afx.h>
+
+1649530267 source:c:\users\maciu\onedrive\pulpit\kody\personal_budget\markup.cpp
+	<stdio.h>
+	"Markup.h"
+	<errno.h>
+	<iconv.h>
+	<windows.h>
+	<mbstring.h>
+
