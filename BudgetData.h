@@ -10,18 +10,18 @@ class BudgetData
 {
     int recordID;
     int amountOfMoney;
-    string date;
+    int date;
     string description;
 
 public:
     int getRecordID();
     int getAmountOfMoney();
-    string getDate();
+    int getDate();
     string getDescription();
-    void setRecordID();
-    void setAmountOfMoney();
-    void setDate();
-    void setDescription();
+    void setRecordID(int newRecordID);
+    void setAmountOfMoney(int newAmountOfMoney);
+    void setDate(int newDate);
+    void setDescription(string newDescription);
 
 };
 

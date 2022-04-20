@@ -11,12 +11,21 @@ using namespace std;
 class PersonalBudget
 {
     UserManager userManager;
+    BudgetDataManager *budgetDataManager;
     int signedInUserID;
 
 public:
-    PersonalBudget(int signedInUserID = 0) : userManager(signedInUserID){};
+    PersonalBudget(int signedInUserID = 0) : userManager(signedInUserID)
+    {
+        budgetDataManager = NULL;
+    };
+    ~PersonalBudget()
+    {
+        delete budgetDataManager;
+        budgetDataManager = NULL;
+    };
     void signUp();
-    int signIn();
+    void signIn();
     char selectOptionFromSigningUpMenu();
     char selectOptionFromSigningInMenu();
     char selectOptionFromStartMenu();
@@ -24,6 +33,10 @@ public:
     bool checkIfUserIsSignedIn();
     void changePassword();
     void logOut();
+    void addNewBudgetData(bool isItExpensesData);
+    void showCurrentMonthBalanceSheet();
+    void showLatestMonthBalanceSheet();
+    void showBalanceSheetForSpecificPeriod();
 };
 
 

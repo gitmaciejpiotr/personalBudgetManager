@@ -4,10 +4,11 @@ void FileWithUsers::addNewUserToFile(User user)
 {
     CMarkup xml;
     xml.Load(FILE_NAME);
+    string childElemName = "user" + HelpfulMethods::convertIntToString(user.getUserID() - 1);
+
 
     xml.FindElem("users");
 
-    string childElemName = "user" + HelpfulMethods::convertIntToString(user.getUserID() - 1);
     if(user.getUserID() > 1)
     {
         xml.FindChildElem(childElemName);
@@ -91,7 +92,7 @@ void FileWithUsers::initiateBeginningOfXMLFile()
 
 void FileWithUsers::changeDataInXMLFile(int signedInUserID, string newPassword)
 {
-    CMarkup xml;
+    CMarkup xml;                                                                                        //IT DOESN'T WORK
     xml.Load(FILE_NAME);
 
     string childElemName = "user" + HelpfulMethods::convertIntToString(signedInUserID);
@@ -100,6 +101,6 @@ void FileWithUsers::changeDataInXMLFile(int signedInUserID, string newPassword)
     xml.FindChildElem(childElemName);
     xml.IntoElem();
     xml.FindChildElem("password");
-    xml.RemoveChildElem();
+    xml.SetChildData("h");
     xml.OutOfElem();
 }

@@ -5,9 +5,14 @@ void PersonalBudget::signUp()
     userManager.signUp();
 }
 
-int PersonalBudget::signIn()
+void PersonalBudget::signIn()
 {
     signedInUserID = userManager.signIn();
+
+    if (signedInUserID > 0)
+    {
+        budgetDataManager = new BudgetDataManager(signedInUserID);
+    }
 }
 
 char PersonalBudget::selectOptionFromSigningInMenu()
@@ -55,6 +60,26 @@ void PersonalBudget::changePassword()
 
 void PersonalBudget::logOut()
 {
-    userManager.logOut();
+    signedInUserID = userManager.logOut();
+}
+
+void PersonalBudget::addNewBudgetData(bool isItExpensesData)
+{
+    budgetDataManager->addNewBudgetData(isItExpensesData);
+}
+
+void PersonalBudget::showCurrentMonthBalanceSheet()
+{
+    budgetDataManager->showCurrentMonthBalanceSheet();
+}
+
+void PersonalBudget::showLatestMonthBalanceSheet()
+{
+    budgetDataManager->showLatestMonthBalanceSheet();
+}
+
+void PersonalBudget::showBalanceSheetForSpecificPeriod()
+{
+    budgetDataManager->showBalanceSheetForSpecificPeriod();
 }
 

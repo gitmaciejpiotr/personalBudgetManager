@@ -13,7 +13,6 @@ class UserManager
 {
     int signedInUserID;
     vector<User> users;
-    BudgetDataManager budgetDataManager;
     FileWithUsers fileWithUsers;
 
     int getNewUserID();
@@ -30,9 +29,11 @@ public:
     void signUp();
     void addNewUser();
     void changePassword();
-    void logOut();
+    int logOut();
     bool checkIfUserIsSignedIn();
     int signIn();
+    //bool isUserSignedIn();
+    //int getSignedInUserID();
 };
 
 

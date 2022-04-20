@@ -2,33 +2,33 @@
 
 int BudgetData::getRecordID()
 {
-
+    return recordID;
 }
 int BudgetData::getAmountOfMoney()
 {
-
+    return amountOfMoney;
 }
-string BudgetDatagetDate()
+int BudgetData::getDate()
 {
-
+    return date;
 }
 string BudgetData::getDescription()
 {
-
+    return description;
 }
-void BudgetData::setRecordID()
+void BudgetData::setRecordID(int newRecordID)
 {
-
+    recordID = newRecordID;
 }
-void BudgetData::setAmountOfMoney()
+void BudgetData::setAmountOfMoney(int newAmountOfMoney)
 {
-
+    amountOfMoney = newAmountOfMoney;
 }
-void BudgetData::setDate()
+void BudgetData::setDate(int newDate)
 {
-
+    date = newDate;
 }
-void BudgetData::setDescription()
+void BudgetData::setDescription(string newDescription)
 {
-
+    description = newDescription;
 }

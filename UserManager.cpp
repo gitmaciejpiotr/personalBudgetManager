@@ -88,7 +88,7 @@ void UserManager::changePassword()
     fileWithUsers.changeDataInXMLFile(signedInUserID, newPassword);
 }
 
-void UserManager::logOut()
+int UserManager::logOut()
 {
     signedInUserID = 0;
 }
@@ -162,4 +162,17 @@ int UserManager::signIn()
     system("pause");
     return 0;
 }
+
+/*bool UserManager::isUserSignedIn()
+{
+    if (signedInUserID > 0)
+        return true;
+    else
+        return false;
+}
+
+int UserManager::getSignedInUserID()
+{
+    return signedInUserID;
+}*/
 

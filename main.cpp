@@ -6,7 +6,6 @@ using namespace std;
 int main()
 {
     PersonalBudget personalBudget;
-    BudgetDataManager budgetDataManager;
 
     char choice;
 
@@ -36,23 +35,26 @@ int main()
         else
         {
             choice = personalBudget.selectOptionFromMenuForSignedInUser();
+            bool isItExpensesData = 0;
 
             switch (choice)
             {
             case '1':
-                budgetDataManager.addNewBudgetData();
+                isItExpensesData = false;
+                personalBudget.addNewBudgetData(isItExpensesData);
                 break;
             case '2':
-                budgetDataManager.addNewBudgetData();
+                isItExpensesData = true;
+                personalBudget.addNewBudgetData(isItExpensesData);
                 break;
             case '3':
-                budgetDataManager.showCurrentMonthBalanceSheet();
+                personalBudget.showCurrentMonthBalanceSheet();
                 break;
             case '4':
-                budgetDataManager.showLatestMonthBalanceSheet();
+                personalBudget.showLatestMonthBalanceSheet();
                 break;
             case '5':
-                budgetDataManager.showBalanceSheetForSpecificPeriod();
+                personalBudget.showBalanceSheetForSpecificPeriod();
                 break;
             case '6':
                 personalBudget.changePassword();

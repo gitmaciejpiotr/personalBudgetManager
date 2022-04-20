@@ -11,21 +11,27 @@ using namespace std;
 
 class BudgetDataManager
 {
-    int signedInUserID;
+    const int SIGNED_IN_USER_ID;
+
     vector<BudgetData> incomesData;
     vector<BudgetData> expensesData;
     FileWithIncomes fileWithIncomes;
     FileWithExpenses fileWithExpenses;
 
+    BudgetData setNewBudgetData(bool isItExpensesData, bool isItWithCurrentDate);
+    int getNewRecordID(bool isItExpensesData);
+
 public:
-    BudgetDataManager()
+
+    BudgetDataManager(int userID = 0) : SIGNED_IN_USER_ID(userID)
     {
-        ;
-    }
+        incomesData = fileWithIncomes.createVectorWithIncomeData();
+        expensesData = fileWithExpenses.createVectorWithExpensesData();
+    };
     void showCurrentMonthBalanceSheet();
     void showLatestMonthBalanceSheet();
     void showBalanceSheetForSpecificPeriod();
-    void addNewBudgetData();
+    void addNewBudgetData(bool isItExpensesData);
 
 };
 
