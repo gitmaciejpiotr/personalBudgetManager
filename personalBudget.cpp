@@ -37,7 +37,7 @@ char PersonalBudget::selectOptionFromStartMenu()
     cout << "2. Logowanie" << endl;
     cout << "9. Koniec programu" << endl;
     cout << "---------------------------" << endl;
-    cout << "Chosen option: ";
+    cout << "Wybierz opcje: ";
     choice = helpfulMethods.setCharacter();
 
     return choice;
@@ -68,18 +68,9 @@ void PersonalBudget::addNewBudgetData(bool isItExpensesData)
     budgetDataManager->addNewBudgetData(isItExpensesData);
 }
 
-void PersonalBudget::showCurrentMonthBalanceSheet()
+void PersonalBudget::showBalanceSheetOfCertainPeriod(int balanceSheetOption)
 {
-    budgetDataManager->showCurrentMonthBalanceSheet();
+    budgetDataManager->showBalanceSheetOfCertainPeriod(balanceSheetOption);
 }
 
-void PersonalBudget::showLatestMonthBalanceSheet()
-{
-    budgetDataManager->showLatestMonthBalanceSheet();
-}
-
-void PersonalBudget::showBalanceSheetForSpecificPeriod()
-{
-    budgetDataManager->showBalanceSheetForSpecificPeriod();
-}
 

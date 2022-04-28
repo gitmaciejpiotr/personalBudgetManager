@@ -32,8 +32,6 @@ public:
     int logOut();
     bool checkIfUserIsSignedIn();
     int signIn();
-    //bool isUserSignedIn();
-    //int getSignedInUserID();
 };
 
 

@@ -20,9 +20,9 @@ void FileWithIncomes::addNewRecordToFile(BudgetData budgetData, int signedInUser
     xml.IntoElem();
     xml.AddChildElem("incomeId", HelpfulMethods::convertIntToString(budgetData.getRecordID()));
     xml.AddChildElem("userId", signedInUserID);
-    xml.AddChildElem("date", budgetData.getDate());
+    xml.AddChildElem("date", HelpfulMethods::convertIntDateToStringDate(budgetData.getDate()));
     xml.AddChildElem("item", budgetData.getDescription());
-    xml.AddChildElem("amount", budgetData.getAmountOfMoney());
+    xml.AddChildElem("amount", HelpfulMethods::convertFloatToString(budgetData.getAmountOfMoney()));
     xml.OutOfElem();
 
     xml.Save(FILE_NAME);
@@ -50,12 +50,14 @@ vector<BudgetData> FileWithIncomes::createVectorWithIncomeData()
             xml.IntoElem();
             xml.FindChildElem("incomeId");
             budgetData.setRecordID(HelpfulMethods::convertStringToInt(xml.GetChildData()));
+            xml.FindChildElem("userId");
+            budgetData.setUserID(HelpfulMethods::convertStringToInt(xml.GetChildData()));
             xml.FindChildElem( "date" );
-            budgetData.setDate(HelpfulMethods::convertStringToInt(xml.GetChildData()));
+            budgetData.setDate(HelpfulMethods::convertStringDateToIntDate(xml.GetChildData()));
             xml.FindChildElem( "item" );
             budgetData.setDescription(xml.GetChildData());
             xml.FindChildElem( "amount" );
-            budgetData.setAmountOfMoney(HelpfulMethods::convertStringToInt(xml.GetChildData()));
+            budgetData.setAmountOfMoney(HelpfulMethods::convertStringToFloat(xml.GetChildData()));
             xml.OutOfElem();
 
             budgetDataInVector.push_back(budgetData);

@@ -9,6 +9,9 @@ using namespace std;
 
 class HelpfulMethods
 {
+    static string checkIfThereIsCommaAndFixItIfIs(string text);
+    static bool checkIfTextHasAnyImpermissibleChars(string text);
+
 public:
     static string convertIntToString(int number);
     static string getLine();
@@ -17,6 +20,13 @@ public:
     static int convertStringToInt(string number);
     static int setInteger();
     static char setCharacter();
+    static int convertStringDateToIntDate(string dateString);
+    static string convertIntDateToStringDate(int date);
+    static float convertStringToFloat(string text);
+    static string convertFloatToString(float number);
+    static int getDayIntFromStringDate(string dateString);
+    static int getMonthIntFromStringDate(string dateString);
+    static int getYearIntFromStringDate(string dateString);
 };
 
 #endif

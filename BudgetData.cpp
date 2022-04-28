@@ -4,7 +4,7 @@ int BudgetData::getRecordID()
 {
     return recordID;
 }
-int BudgetData::getAmountOfMoney()
+float BudgetData::getAmountOfMoney()
 {
     return amountOfMoney;
 }
@@ -16,11 +16,15 @@ string BudgetData::getDescription()
 {
     return description;
 }
+int BudgetData::getUserID()
+{
+    return userID;
+}
 void BudgetData::setRecordID(int newRecordID)
 {
     recordID = newRecordID;
 }
-void BudgetData::setAmountOfMoney(int newAmountOfMoney)
+void BudgetData::setAmountOfMoney(float newAmountOfMoney)
 {
     amountOfMoney = newAmountOfMoney;
 }
@@ -31,4 +35,8 @@ void BudgetData::setDate(int newDate)
 void BudgetData::setDescription(string newDescription)
 {
     description = newDescription;
+}
+void BudgetData::setUserID(int newID)
+{
+    userID = newID;
 }

@@ -34,9 +34,7 @@ public:
     void changePassword();
     void logOut();
     void addNewBudgetData(bool isItExpensesData);
-    void showCurrentMonthBalanceSheet();
-    void showLatestMonthBalanceSheet();
-    void showBalanceSheetForSpecificPeriod();
+    void showBalanceSheetOfCertainPeriod(int balanceSheetOption);
 };
 
 

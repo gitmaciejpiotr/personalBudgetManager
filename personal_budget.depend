@@ -1,22 +1,24 @@
 # depslib dependency file v1.0
-1650459547 source:c:\users\maciu\onedrive\pulpit\kody\personal_budget\budgetdata.cpp
+1651137483 source:c:\users\maciu\onedrive\pulpit\kody\personal_budget\budgetdata.cpp
 	"BudgetData.h"
 
-1650454192 c:\users\maciu\onedrive\pulpit\kody\personal_budget\budgetdata.h
+1651137483 c:\users\maciu\onedrive\pulpit\kody\personal_budget\budgetdata.h
 	<iostream>
 	"BudgetData.h"
 
-1650463322 source:c:\users\maciu\onedrive\pulpit\kody\personal_budget\budgetdatamanager.cpp
+1651178441 source:c:\users\maciu\onedrive\pulpit\kody\personal_budget\budgetdatamanager.cpp
 	"BudgetDataManager.h"
 
-1650466133 c:\users\maciu\onedrive\pulpit\kody\personal_budget\budgetdatamanager.h
+1651178441 c:\users\maciu\onedrive\pulpit\kody\personal_budget\budgetdatamanager.h
 	<iostream>
 	"BudgetData.h"
 	"FileWithIncomes.h"
 	"FileWithExpenses.h"
 	<vector>
+	<iomanip>
+	<cmath>
 
-1650463608 c:\users\maciu\onedrive\pulpit\kody\personal_budget\filewithincomes.h
+1650467243 c:\users\maciu\onedrive\pulpit\kody\personal_budget\filewithincomes.h
 	<iostream>
 	<vector>
 	"BudgetData.h"
@@ -24,7 +26,7 @@
 	"HelpfulMethods.h"
 	<fstream>
 
-1650455786 c:\users\maciu\onedrive\pulpit\kody\personal_budget\filewithexpenses.h
+1650467243 c:\users\maciu\onedrive\pulpit\kody\personal_budget\filewithexpenses.h
 	<iostream>
 	<vector>
 	"BudgetData.h"
@@ -34,10 +36,10 @@
 	"HelpfulMethods.h"
 	<fstream>
 
-1650455848 source:c:\users\maciu\onedrive\pulpit\kody\personal_budget\filewithusers.cpp
+1651177260 source:c:\users\maciu\onedrive\pulpit\kody\personal_budget\filewithusers.cpp
 	"FileWithUsers.h"
 
-1650456095 c:\users\maciu\onedrive\pulpit\kody\personal_budget\filewithusers.h
+1650467243 c:\users\maciu\onedrive\pulpit\kody\personal_budget\filewithusers.h
 	<iostream>
 	<vector>
 	"User.h"
@@ -51,11 +53,11 @@
 	<iostream>
 	"User.h"
 
-1650465002 source:c:\users\maciu\onedrive\pulpit\kody\personal_budget\main.cpp
+1651178569 source:c:\users\maciu\onedrive\pulpit\kody\personal_budget\main.cpp
 	<iostream>
 	"personalBudget.h"
 
-1650465002 c:\users\maciu\onedrive\pulpit\kody\personal_budget\personalbudget.h
+1651178524 c:\users\maciu\onedrive\pulpit\kody\personal_budget\personalbudget.h
 	<iostream>
 	"personalBudget.h"
 	"HelpfulMethods.h"
@@ -64,31 +66,31 @@
 1649530267 source:c:\users\maciu\onedrive\pulpit\kody\personal_budget\user.cpp
 	"User.h"
 
-1650463607 source:c:\users\maciu\onedrive\pulpit\kody\personal_budget\filewithexpenses.cpp
+1651137483 source:c:\users\maciu\onedrive\pulpit\kody\personal_budget\filewithexpenses.cpp
 	"FileWithExpenses.h"
 
-1650463608 source:c:\users\maciu\onedrive\pulpit\kody\personal_budget\filewithincomes.cpp
+1651137482 source:c:\users\maciu\onedrive\pulpit\kody\personal_budget\filewithincomes.cpp
 	"FileWithIncomes.h"
 
-1650465274 c:\users\maciu\onedrive\pulpit\kody\personal_budget\usermanager.h
+1651177889 c:\users\maciu\onedrive\pulpit\kody\personal_budget\usermanager.h
 	<iostream>
 	"BudgetDataManager.h"
 	"FileWithUsers.h"
 	"HelpfulMethods.h"
 	<vector>
 
-1650465274 source:c:\users\maciu\onedrive\pulpit\kody\personal_budget\usermanager.cpp
+1650712949 source:c:\users\maciu\onedrive\pulpit\kody\personal_budget\usermanager.cpp
 	"UserManager.h"
 
-1649421315 source:c:\users\maciu\onedrive\pulpit\kody\personal_budget\helpfulmethods.cpp
+1651178122 source:c:\users\maciu\onedrive\pulpit\kody\personal_budget\helpfulmethods.cpp
 	"HelpfulMethods.h"
 
-1649421315 c:\users\maciu\onedrive\pulpit\kody\personal_budget\helpfulmethods.h
+1651144575 c:\users\maciu\onedrive\pulpit\kody\personal_budget\helpfulmethods.h
 	<iostream>
 	<sstream>
 	<algorithm>
 
-1650465286 source:c:\users\maciu\onedrive\pulpit\kody\personal_budget\personalbudget.cpp
+1651178524 source:c:\users\maciu\onedrive\pulpit\kody\personal_budget\personalbudget.cpp
 	"personalBudget.h"
 
 1649530267 c:\users\maciu\onedrive\pulpit\kody\personal_budget\markup.h

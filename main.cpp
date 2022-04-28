@@ -27,7 +27,7 @@ int main()
                 exit(0);
                 break;
             default:
-                cout << endl << "There is no such an option" << endl << endl;
+                cout << endl << "Nie ma takiej opcji w menu" << endl << endl;
                 system("pause");
                 break;
             }
@@ -36,6 +36,7 @@ int main()
         {
             choice = personalBudget.selectOptionFromMenuForSignedInUser();
             bool isItExpensesData = 0;
+            int balanceSheetOption = 0;
 
             switch (choice)
             {
@@ -48,19 +49,26 @@ int main()
                 personalBudget.addNewBudgetData(isItExpensesData);
                 break;
             case '3':
-                personalBudget.showCurrentMonthBalanceSheet();
+                balanceSheetOption = 1;
+                personalBudget.showBalanceSheetOfCertainPeriod(balanceSheetOption);
                 break;
             case '4':
-                personalBudget.showLatestMonthBalanceSheet();
+                balanceSheetOption = 2;
+                personalBudget.showBalanceSheetOfCertainPeriod(balanceSheetOption);
                 break;
             case '5':
-                personalBudget.showBalanceSheetForSpecificPeriod();
+                balanceSheetOption = 3;
+                personalBudget.showBalanceSheetOfCertainPeriod(balanceSheetOption);
                 break;
             case '6':
                 personalBudget.changePassword();
                 break;
             case '7':
                 personalBudget.logOut();
+                break;
+            default:
+                cout << endl << "Nie ma takiej opcji w menu" << endl << endl;
+                system("pause");
                 break;
             }
         }

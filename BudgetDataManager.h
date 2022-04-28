@@ -6,6 +6,8 @@
 #include "FileWithIncomes.h"
 #include "FileWithExpenses.h"
 #include <vector>
+#include <iomanip>
+#include <cmath>
 
 using namespace std;
 
@@ -20,6 +22,16 @@ class BudgetDataManager
 
     BudgetData setNewBudgetData(bool isItExpensesData, bool isItWithCurrentDate);
     int getNewRecordID(bool isItExpensesData);
+    bool askAboutDateInRecord();
+    bool checkIfDateFormatIsCorrect(string dateString);
+    bool dateTest1(string dateString);
+    bool dateTest2(string dateString);
+    bool dateTest3(string dateString);
+    bool dateTest4(string dateString);
+    bool dateTest5(string dateString);
+    bool dateTest6(string dateString, bool test5);
+    bool dateTest7(string dateString);
+
 
 public:
 
@@ -28,10 +40,9 @@ public:
         incomesData = fileWithIncomes.createVectorWithIncomeData();
         expensesData = fileWithExpenses.createVectorWithExpensesData();
     };
-    void showCurrentMonthBalanceSheet();
-    void showLatestMonthBalanceSheet();
-    void showBalanceSheetForSpecificPeriod();
+    void showBalanceSheetOfCertainPeriod(int balanceSheetOption);
     void addNewBudgetData(bool isItExpensesData);
+    vector<BudgetData> sortBudgetDataByDate(vector<BudgetData> budgetDataInVector);
 
 };
 

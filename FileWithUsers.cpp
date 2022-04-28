@@ -50,16 +50,12 @@ vector<User> FileWithUsers::createVectorWithUsersData()
             xml.IntoElem();
             xml.FindChildElem("userid");
             user.setUserID(HelpfulMethods::convertStringToInt(xml.GetChildData()));
-            // cout << user.getUserID() << endl;
             xml.FindChildElem( "login" );
             user.setLogin(xml.GetChildData());
-            //cout << user.getLogin() << endl;
             xml.FindChildElem( "password" );
             user.setPassword(xml.GetChildData());
-            //cout << user.getPassword() << endl;
             xml.FindChildElem( "name" );
             user.setName(xml.GetChildData());
-            // cout << user.getName() << endl;
             xml.FindChildElem( "surname" );
             user.setSurname(xml.GetChildData());
             xml.OutOfElem();
