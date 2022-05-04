@@ -4,17 +4,11 @@ void FileWithExpenses::addNewRecordToFile(BudgetData budgetData, int signedInUse
 {
     CMarkup xml;
     xml.Load(FILE_NAME);
-    string childElemName = "expense" + HelpfulMethods::convertIntToString(budgetData.getRecordID() - 1);
+    string childElemName = "expense";
 
 
     xml.FindElem("expenses");
 
-    if(budgetData.getRecordID() > 1)
-    {
-        xml.FindChildElem(childElemName);
-    }
-
-    childElemName = "expense" + HelpfulMethods::convertIntToString(budgetData.getRecordID());
 
     xml.AddChildElem(childElemName);
     xml.IntoElem();
@@ -34,7 +28,7 @@ void FileWithExpenses::initiateBeginningOfXMLFile()
 
     file.open(FILE_NAME.c_str());
 
-    if (file.good() == false)
+    if (!file.good())
     {
         CMarkup xml;
         xml.AddElem("expenses");
@@ -48,7 +42,7 @@ vector<BudgetData> FileWithExpenses::createVectorWithExpensesData()
     fstream file;
     file.open(FILE_NAME.c_str());
 
-    if (file.good() == true)
+    if (file.good())
     {
         BudgetData budgetData;
         vector<BudgetData> budgetDataInVector;
@@ -56,12 +50,10 @@ vector<BudgetData> FileWithExpenses::createVectorWithExpensesData()
         CMarkup xml;
         xml.Load(FILE_NAME);
 
-        int number = 1;
-        string childElemName = "expense" + HelpfulMethods::convertIntToString(number);
+        string childElemName = "expense";
 
-        while(xml.FindChildElem(childElemName) == true)
+        while(xml.FindChildElem(childElemName))
         {
-            xml.FindChildElem(childElemName);
             xml.IntoElem();
             xml.FindChildElem("expenseId");
             budgetData.setRecordID(HelpfulMethods::convertStringToInt(xml.GetChildData()));
@@ -76,9 +68,6 @@ vector<BudgetData> FileWithExpenses::createVectorWithExpensesData()
             xml.OutOfElem();
 
             budgetDataInVector.push_back(budgetData);
-
-            number++;
-            childElemName = "expense" + HelpfulMethods::convertIntToString(number);
         }
 
         return budgetDataInVector;

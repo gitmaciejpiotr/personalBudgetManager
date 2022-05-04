@@ -29,7 +29,7 @@ string HelpfulMethods::tranformFirstLeterIntoBigOneAndTheRestIntoSmallOnes(strin
 string HelpfulMethods::getNumber(string text, int characterPosition)
 {
     string number = "";
-    while(isdigit(text[characterPosition]) == true)
+    while(isdigit(text[characterPosition]))
     {
         number += text[characterPosition];
         characterPosition ++;
@@ -135,7 +135,7 @@ string HelpfulMethods::convertIntDateToStringDate(int date)
 float HelpfulMethods::convertStringToFloat(string text)
 {
     text = checkIfThereIsCommaAndFixItIfIs(text);
-    if (checkIfTextHasAnyImpermissibleChars(text) == false)
+    if (checkIfTextHasAnyImpermissibleChars(text))
         return stof(text);
     else
         return -1;
@@ -157,10 +157,7 @@ bool HelpfulMethods::checkIfTextHasAnyImpermissibleChars(string text)
        }
     }
 
-    if(marker == text.length())
-        return false;
-    else
-        return true;
+    return(marker == text.length());
 }
 
 string HelpfulMethods::checkIfThereIsCommaAndFixItIfIs(string text)
@@ -177,7 +174,16 @@ string HelpfulMethods::checkIfThereIsCommaAndFixItIfIs(string text)
 
 string HelpfulMethods::convertFloatToString(float number)
 {
-    string numberString = to_string(number);
+    stringstream sstream;
 
-    return numberString.erase(numberString.length() - 4, 4);
+    sstream << number;
+    string numberString = sstream.str();
+
+    if(numberString[numberString.length() - 2] == '.')
+    {
+        numberString = numberString + "0";
+    }
+
+
+    return numberString;
 }

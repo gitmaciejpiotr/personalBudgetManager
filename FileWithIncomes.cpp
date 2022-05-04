@@ -4,17 +4,9 @@ void FileWithIncomes::addNewRecordToFile(BudgetData budgetData, int signedInUser
 {
     CMarkup xml;
     xml.Load(FILE_NAME);
-    string childElemName = "income" + HelpfulMethods::convertIntToString(budgetData.getRecordID() - 1);
-
+    string childElemName = "income";
 
     xml.FindElem("incomes");
-
-    if(budgetData.getRecordID() > 1)
-    {
-        xml.FindChildElem(childElemName);
-    }
-
-    childElemName = "income" + HelpfulMethods::convertIntToString(budgetData.getRecordID());
 
     xml.AddChildElem(childElemName);
     xml.IntoElem();
@@ -33,7 +25,7 @@ vector<BudgetData> FileWithIncomes::createVectorWithIncomeData()
     fstream file;
     file.open(FILE_NAME.c_str());
 
-    if (file.good() == true)
+    if (file.good())
     {
         BudgetData budgetData;
         vector<BudgetData> budgetDataInVector;
@@ -41,12 +33,10 @@ vector<BudgetData> FileWithIncomes::createVectorWithIncomeData()
         CMarkup xml;
         xml.Load(FILE_NAME);
 
-        int number = 1;
-        string childElemName = "income" + HelpfulMethods::convertIntToString(number);
+        string childElemName = "income";
 
-        while(xml.FindChildElem(childElemName) == true)
+        while(xml.FindChildElem(childElemName))
         {
-            xml.FindChildElem(childElemName);
             xml.IntoElem();
             xml.FindChildElem("incomeId");
             budgetData.setRecordID(HelpfulMethods::convertStringToInt(xml.GetChildData()));
@@ -61,9 +51,6 @@ vector<BudgetData> FileWithIncomes::createVectorWithIncomeData()
             xml.OutOfElem();
 
             budgetDataInVector.push_back(budgetData);
-
-            number++;
-            childElemName = "income" + HelpfulMethods::convertIntToString(number);
         }
 
         return budgetDataInVector;
@@ -77,7 +64,7 @@ void FileWithIncomes::initiateBeginningOfXMLFile()
 
     file.open(FILE_NAME.c_str());
 
-    if (file.good() == false)
+    if (!file.good())
     {
         CMarkup xml;
         xml.AddElem("incomes");

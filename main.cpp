@@ -11,7 +11,7 @@ int main()
 
     while (true)
     {
-        if (personalBudget.checkIfUserIsSignedIn() == false)
+        if (!personalBudget.checkIfUserIsSignedIn())
         {
             choice = personalBudget.selectOptionFromStartMenu();
 

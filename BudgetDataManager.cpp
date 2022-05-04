@@ -28,7 +28,7 @@ void BudgetDataManager::showBalanceSheetOfCertainPeriod(int balanceSheetOption)
         cout << "Podaj date poczatkowa: ";
         dateString1 = HelpfulMethods::getLine();
 
-        while(checkIfDateFormatIsCorrect(dateString1) == false)
+        while(!checkIfDateFormatIsCorrect(dateString1))
         {
             cout << endl << "Niepoprawny format lub wartosc powyzszej daty." << endl;
             cout << "Wpisz ponownie: ";
@@ -39,10 +39,22 @@ void BudgetDataManager::showBalanceSheetOfCertainPeriod(int balanceSheetOption)
         cout << "Podaj date koncowa: ";
         dateString2 = HelpfulMethods::getLine();
 
-        while(checkIfDateFormatIsCorrect(dateString2) == false)
+        while(!checkIfDateFormatIsCorrect(dateString2))
         {
             cout << endl << "Niepoprawny format lub wartosc powyzszej daty." << endl;
             cout << "Wpisz ponownie: ";
+
+            dateString2 = HelpfulMethods::getLine();
+        }
+
+        while(!checkIfDatesAreInRigthOrder(dateString1, dateString2))
+        {
+            cout << endl << "Niepoprawna kolejnosc dat." << endl;
+            cout << "Wpisz ponownie pierwsza date: ";
+
+            dateString1 = HelpfulMethods::getLine();
+
+            cout << "Wpisz ponownie druga date: ";
 
             dateString2 = HelpfulMethods::getLine();
         }
@@ -77,7 +89,7 @@ void BudgetDataManager::showBalanceSheetOfCertainPeriod(int balanceSheetOption)
     for(int i = 0; i < sortedIncomesByDate.size(); i++)
     {
         sumOfIncomes += sortedIncomesByDate[i].getAmountOfMoney();
-        cout << HelpfulMethods::convertIntDateToStringDate(sortedIncomesByDate[i].getDate()) << " | " << sortedIncomesByDate[i].getDescription() << " | " << sortedIncomesByDate[i].getAmountOfMoney() << " zl" << endl;
+        cout << HelpfulMethods::convertIntDateToStringDate(sortedIncomesByDate[i].getDate()) << " | " << sortedIncomesByDate[i].getDescription() << " | " << HelpfulMethods::convertFloatToString(sortedIncomesByDate[i].getAmountOfMoney()) << " zl" << endl;
     }
 
     if(sortedIncomesByDate.size() == 0)
@@ -90,7 +102,7 @@ void BudgetDataManager::showBalanceSheetOfCertainPeriod(int balanceSheetOption)
     for(int i = 0; i < sortedExpensesByDate.size(); i++)
     {
         sumOfExpences += sortedExpensesByDate[i].getAmountOfMoney();
-        cout << HelpfulMethods::convertIntDateToStringDate(sortedExpensesByDate[i].getDate()) << " | " << sortedExpensesByDate[i].getDescription() << " | " << sortedExpensesByDate[i].getAmountOfMoney() << " zl" << endl;
+        cout << HelpfulMethods::convertIntDateToStringDate(sortedExpensesByDate[i].getDate()) << " | " << sortedExpensesByDate[i].getDescription() << " | " << HelpfulMethods::convertFloatToString(sortedExpensesByDate[i].getAmountOfMoney()) << " zl" << endl;
     }
 
     if(sortedExpensesByDate.size() == 0)
@@ -98,22 +110,30 @@ void BudgetDataManager::showBalanceSheetOfCertainPeriod(int balanceSheetOption)
         cout << "Brak wydatkow." << endl;
     }
 
-    cout << endl << "Suma przychodow: " << sumOfIncomes << " zl" << endl;
-    cout << "Suma wydatkow: " << sumOfExpences << " zl" << endl;
+    cout << endl << "Suma przychodow: " << HelpfulMethods::convertFloatToString(sumOfIncomes) << " zl" << endl;
+    cout << "Suma wydatkow: " << HelpfulMethods::convertFloatToString(sumOfExpences) << " zl" << endl;
     if (balanceSheetOption == 1)
     {
-        cout << endl << "Bilans z biezacego miesiaca: " << sumOfIncomes - sumOfExpences << " zl" << endl;
+        cout << endl << "Bilans z biezacego miesiaca: " << HelpfulMethods::convertFloatToString(sumOfIncomes - sumOfExpences) << " zl" << endl;
     }
     else if(balanceSheetOption == 2)
     {
-        cout << endl << "Bilans z poprzedniego miesiaca: " << sumOfIncomes - sumOfExpences << " zl" << endl;
+        cout << endl << "Bilans z poprzedniego miesiaca: " << HelpfulMethods::convertFloatToString(sumOfIncomes - sumOfExpences) << " zl" << endl;
     }
     else if(balanceSheetOption == 3)
     {
-        cout << endl << "Bilans z wybranego okresu: " << sumOfIncomes - sumOfExpences << " zl" << endl << endl;
+        cout << endl << "Bilans z wybranego okresu: " << HelpfulMethods::convertFloatToString(sumOfIncomes - sumOfExpences) << " zl" << endl << endl;
     }
 
     system("pause");
+}
+
+bool BudgetDataManager::checkIfDatesAreInRigthOrder(string dateString1, string dateString2)
+{
+    int firstDayOfCertainPeriod = HelpfulMethods::convertStringDateToIntDate(dateString1);
+    int lastDayOfCertainPeriod = HelpfulMethods::convertStringDateToIntDate(dateString2);
+
+    return(firstDayOfCertainPeriod < lastDayOfCertainPeriod);
 }
 
 void BudgetDataManager::addNewBudgetData(bool isItExpensesData)
@@ -122,7 +142,7 @@ void BudgetDataManager::addNewBudgetData(bool isItExpensesData)
 
     BudgetData budgetData = setNewBudgetData(isItExpensesData, isItWithCurrentDate);
 
-    if (isItExpensesData == true)
+    if (isItExpensesData)
     {
         expensesData.push_back(budgetData);
         fileWithExpenses.addNewRecordToFile(budgetData, SIGNED_IN_USER_ID);
@@ -132,6 +152,9 @@ void BudgetDataManager::addNewBudgetData(bool isItExpensesData)
         incomesData.push_back(budgetData);
         fileWithIncomes.addNewRecordToFile(budgetData, SIGNED_IN_USER_ID);
     }
+
+    cout << endl << "Pomyslnie dodano nowy zapis." << endl;
+    system("pause");
 }
 
 BudgetData BudgetDataManager::setNewBudgetData(bool isItExpensesData, bool isItWithCurrentDate)
@@ -143,7 +166,7 @@ BudgetData BudgetDataManager::setNewBudgetData(bool isItExpensesData, bool isItW
     budgetData.setRecordID(getNewRecordID(isItExpensesData));
     budgetData.setUserID(SIGNED_IN_USER_ID);
 
-    if (isItWithCurrentDate == false)
+    if (!isItWithCurrentDate)
     {
         int dateInt;
         string dateString;
@@ -151,7 +174,7 @@ BudgetData BudgetDataManager::setNewBudgetData(bool isItExpensesData, bool isItW
         cout << "Podaj date: ";
         dateString = HelpfulMethods::getLine();
 
-        while(checkIfDateFormatIsCorrect(dateString) == false)
+        while(!checkIfDateFormatIsCorrect(dateString))
         {
             cout << endl << "Niepoprawny format lub wartosc daty." << endl;
             cout << "Wpisz date ponownie: ";
@@ -177,6 +200,13 @@ BudgetData BudgetDataManager::setNewBudgetData(bool isItExpensesData, bool isItW
     float amountOfMoney;
     cout << "Podaj sume: ";
     amountOfMoney = HelpfulMethods::convertStringToFloat(HelpfulMethods::getLine());
+    while(!checkIfAfterDotAreMaxTwoChars(amountOfMoney))
+    {
+        cout << "Wpisano zbyt wiele cyfr po przecinku." << endl;
+        cout << "Wpisz sume ponownie: ";
+        amountOfMoney = HelpfulMethods::convertStringToFloat(HelpfulMethods::getLine());
+    }
+
     while(amountOfMoney == -1)
     {
         cout << "Wpisano niedozwolony znak." << endl;
@@ -194,18 +224,34 @@ BudgetData BudgetDataManager::setNewBudgetData(bool isItExpensesData, bool isItW
     return budgetData;
 }
 
+bool BudgetDataManager::checkIfAfterDotAreMaxTwoChars(float amountOfMoney)
+{
+    string amountOfMoneyString = HelpfulMethods::convertFloatToString(amountOfMoney);
+    int marker = 0, length = amountOfMoneyString.length();
+
+    for (int i = 0; i < length; i++)
+    {
+        if(amountOfMoneyString[i] == '.')
+        {
+            marker = i;
+        }
+    }
+
+    return (marker == length - 2 || marker == length - 3 || marker == 0);
+}
+
 int BudgetDataManager::getNewRecordID(bool isItExpensesData)
 {
-    if(isItExpensesData == true)
+    if(isItExpensesData)
     {
-        if(expensesData.empty() == true)
+        if(expensesData.empty())
             return 1;
         else
             return expensesData.back().getRecordID() + 1;
     }
     else
     {
-        if(incomesData.empty() == true)
+        if(incomesData.empty())
             return 1;
         else
             return incomesData.back().getRecordID() + 1;
@@ -226,12 +272,10 @@ bool BudgetDataManager::askAboutDateInRecord()
         if(yesOrNo == "t")
         {
             return true;
-            break;
         }
         else if(yesOrNo == "n")
         {
             return false;
-            break;
         }
         else
         {
@@ -251,10 +295,7 @@ bool BudgetDataManager::checkIfDateFormatIsCorrect(string dateString)
     bool test6 = dateTest6(dateString, test5);
     bool test7 = dateTest7(dateString);
 
-    if (test1 == true && test2 == true && test3 == true && test4 == true && test5 == true && test6 == true && test7 == true)
-        return true;
-    else
-        return false;
+    return (test1 && test2 && test3 && test4 && test5 && test6 && test7);
 }
 
 bool BudgetDataManager::dateTest1(string dateString)
@@ -276,26 +317,17 @@ bool BudgetDataManager::dateTest1(string dateString)
         correctNumChars += numChar;
     }
 
-    if (correctNumChars == 8)
-        return true;
-    else
-        return false;
+    return (correctNumChars == 8);
 }
 
 bool BudgetDataManager::dateTest2(string dateString)
 {
-    if(dateString.length() == 10)
-        return true;
-    else
-        return false;
+    return (dateString.length() == 10);
 }
 
 bool BudgetDataManager::dateTest3(string dateString)
 {
-    if(dateString[4] == '-' && dateString[7] == '-')
-        return true;
-    else
-        return false;
+    return (dateString[4] == '-' && dateString[7] == '-');
 }
 
 bool BudgetDataManager::dateTest4(string dateString)
@@ -307,10 +339,7 @@ bool BudgetDataManager::dateTest4(string dateString)
     dateString.erase(4, 9);
     int yearInt = HelpfulMethods::convertStringToInt(dateString);
 
-    if(2000 <= yearInt && yearInt <= st.wYear)
-        return true;
-    else
-        return false;
+    return (2000 <= yearInt && yearInt <= st.wYear);
 }
 
 bool BudgetDataManager::dateTest5(string dateString)
@@ -322,10 +351,7 @@ bool BudgetDataManager::dateTest5(string dateString)
     dateString.erase(2, 5);
     int monthInt = HelpfulMethods::convertStringToInt(dateString);
 
-    if(1 <= monthInt && monthInt <= 12 )
-        return true;
-    else
-        return false;
+    return (1 <= monthInt && monthInt <= 12 );
 }
 
 bool BudgetDataManager::dateTest6(string dateString, bool test5)
@@ -336,7 +362,7 @@ bool BudgetDataManager::dateTest6(string dateString, bool test5)
     int monthInt = HelpfulMethods::getMonthIntFromStringDate(dateString);
     int yearInt = HelpfulMethods::getYearIntFromStringDate(dateString);
 
-    if(test5 == true)
+    if(test5)
     {
         if((monthInt == 4 || monthInt == 6 || monthInt == 9 || monthInt == 11) && 1 <= dayInt && dayInt <= 30)
             test6_1 = true;
@@ -354,10 +380,7 @@ bool BudgetDataManager::dateTest6(string dateString, bool test5)
             test6_3 = true;
     }
 
-    if(test6_1 == true || test6_2_1 == true || test6_2_2 == true || test6_3 == true)
-        return true;
-    else
-        return false;
+    return (test6_1|| test6_2_1 || test6_2_2 || test6_3);
 }
 
 bool BudgetDataManager::dateTest7(string dateString)
@@ -365,10 +388,7 @@ bool BudgetDataManager::dateTest7(string dateString)
     SYSTEMTIME st;
     GetSystemTime(&st);
 
-    if(HelpfulMethods::convertStringDateToIntDate(dateString) <= (st.wYear*10000 + st.wMonth*100 + st.wDay))
-        return true;
-    else
-        return false;
+    return (HelpfulMethods::convertStringDateToIntDate(dateString) <= (st.wYear*10000 + st.wMonth*100 + st.wDay));
 }
 
 vector<BudgetData> BudgetDataManager::sortBudgetDataByDate(vector<BudgetData> budgetDataInVector)

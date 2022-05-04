@@ -25,7 +25,7 @@ public:
     }
     void addNewUserToFile(User user);
     vector<User> createVectorWithUsersData();
-    void changeDataInXMLFile(int signedInUserID, string newPassword);
+    void changePasswordInXMLFile(int signedInUserID, string newPassword);
 };
 
 

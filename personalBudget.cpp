@@ -15,16 +15,6 @@ void PersonalBudget::signIn()
     }
 }
 
-char PersonalBudget::selectOptionFromSigningInMenu()
-{
-
-}
-
-char PersonalBudget::selectOptionFromSigningUpMenu()
-{
-
-}
-
 char PersonalBudget::selectOptionFromStartMenu()
 {
     HelpfulMethods helpfulMethods;

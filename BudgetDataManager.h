@@ -24,6 +24,8 @@ class BudgetDataManager
     int getNewRecordID(bool isItExpensesData);
     bool askAboutDateInRecord();
     bool checkIfDateFormatIsCorrect(string dateString);
+    bool checkIfAfterDotAreMaxTwoChars(float amountOfMoney);
+    bool checkIfDatesAreInRigthOrder(string dateString1, string dateString2);
     bool dateTest1(string dateString);
     bool dateTest2(string dateString);
     bool dateTest3(string dateString);

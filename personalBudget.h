@@ -26,8 +26,6 @@ public:
     };
     void signUp();
     void signIn();
-    char selectOptionFromSigningUpMenu();
-    char selectOptionFromSigningInMenu();
     char selectOptionFromStartMenu();
     char selectOptionFromMenuForSignedInUser();
     bool checkIfUserIsSignedIn();

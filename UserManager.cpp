@@ -49,7 +49,7 @@ User UserManager::setNewUserData()
         login = HelpfulMethods::getLine();
         user.setLogin(login);
     }
-    while (checkIfLoginIsOccupied(user.getLogin()) == true);
+    while (checkIfLoginIsOccupied(user.getLogin()));
 
 
     string password;
@@ -85,7 +85,7 @@ void UserManager::changePassword()
             system("pause");
         }
     }
-    fileWithUsers.changeDataInXMLFile(signedInUserID, newPassword);
+    fileWithUsers.changePasswordInXMLFile(signedInUserID, newPassword);
 }
 
 int UserManager::logOut()
@@ -95,20 +95,12 @@ int UserManager::logOut()
 
 bool UserManager::checkIfUserIsSignedIn()
 {
-    if (signedInUserID > 0)
-        return true;
-    else
-        return false;
-}
-
-void UserManager::setSignedInUserID()
-{
-
+    return (signedInUserID > 0);
 }
 
 int UserManager::getNewUserID()
 {
-    if (users.empty() == true)
+    if (users.empty())
         return 1;
     else
         return users.back().getUserID() + 1;
@@ -162,17 +154,3 @@ int UserManager::signIn()
     system("pause");
     return 0;
 }
-
-/*bool UserManager::isUserSignedIn()
-{
-    if (signedInUserID > 0)
-        return true;
-    else
-        return false;
-}
-
-int UserManager::getSignedInUserID()
-{
-    return signedInUserID;
-}*/
-

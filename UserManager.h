@@ -16,7 +16,6 @@ class UserManager
     FileWithUsers fileWithUsers;
 
     int getNewUserID();
-    void setSignedInUserID();
     bool checkIfLoginIsOccupied(string login);
     User setNewUserData();
 

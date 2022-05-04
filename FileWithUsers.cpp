@@ -4,17 +4,9 @@ void FileWithUsers::addNewUserToFile(User user)
 {
     CMarkup xml;
     xml.Load(FILE_NAME);
-    string childElemName = "user" + HelpfulMethods::convertIntToString(user.getUserID() - 1);
-
+    string childElemName = "user";
 
     xml.FindElem("users");
-
-    if(user.getUserID() > 1)
-    {
-        xml.FindChildElem(childElemName);
-    }
-
-    childElemName = "user" + HelpfulMethods::convertIntToString(user.getUserID());
 
     xml.AddChildElem(childElemName);
     xml.IntoElem();
@@ -33,7 +25,7 @@ vector<User> FileWithUsers::createVectorWithUsersData()
     fstream file;
     file.open(FILE_NAME.c_str());
 
-    if (file.good() == true)
+    if (file.good())
     {
         User user;
         vector<User> users;
@@ -42,11 +34,10 @@ vector<User> FileWithUsers::createVectorWithUsersData()
         xml.Load(FILE_NAME);
 
         int number = 1;
-        string childElemName = "user" + HelpfulMethods::convertIntToString(number);
+        string childElemName = "user";
 
-        while(xml.FindChildElem(childElemName) == true)
+        while(xml.FindChildElem(childElemName))
         {
-            xml.FindChildElem(childElemName);
             xml.IntoElem();
             xml.FindChildElem("userid");
             user.setUserID(HelpfulMethods::convertStringToInt(xml.GetChildData()));
@@ -61,9 +52,6 @@ vector<User> FileWithUsers::createVectorWithUsersData()
             xml.OutOfElem();
 
             users.push_back(user);
-
-            number++;
-            childElemName = "user" + HelpfulMethods::convertIntToString(number);
         }
 
         return users;
@@ -77,7 +65,7 @@ void FileWithUsers::initiateBeginningOfXMLFile()
 
     file.open(FILE_NAME.c_str());
 
-    if (file.good() == false)
+    if (!file.good())
     {
         CMarkup xml;
         xml.AddElem("users");
@@ -86,17 +74,25 @@ void FileWithUsers::initiateBeginningOfXMLFile()
     file.close();
 }
 
-void FileWithUsers::changeDataInXMLFile(int signedInUserID, string newPassword)
+void FileWithUsers::changePasswordInXMLFile(int signedInUserID, string newPassword)
 {
-    CMarkup xml;                                                                                        //IT DOESN'T WORK
+    CMarkup xml;
     xml.Load(FILE_NAME);
 
-    string childElemName = "user" + HelpfulMethods::convertIntToString(signedInUserID);
+    string childElemName = "user";
 
-    xml.ResetChildPos();
-    xml.FindChildElem(childElemName);
+    xml.FindElem("users");
     xml.IntoElem();
-    xml.FindChildElem("password");
-    xml.SetChildData("h");
-    xml.OutOfElem();
+    while (xml.FindElem(childElemName))
+    {
+        xml.FindChildElem("userid");
+
+        if(atoi(MCD_2PCSZ(xml.GetChildData())) == signedInUserID)
+        {
+            xml.FindChildElem("password");
+            xml.SetChildData(newPassword);
+            break;
+        }
+    }
+    xml.Save(FILE_NAME);
 }
